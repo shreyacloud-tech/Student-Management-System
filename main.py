@@ -13,15 +13,26 @@ def add_students():
             print("Student ID already exists")
             return
 
-    name = input("Enter student name: ")
+    name = input("Enter student name: ").strip()
+    if not name:
+        print("Student name cannot be empty")
+        return
+
+        
 
     try:
         age = int(input("Enter student age: "))
     except ValueError:
         print("Please enter a valid age")
         return
+    if age<=0:
+        print("Age must be greater than 0")
+        return
 
-    course = input("Enter student course: ")
+    course = input("Enter student course: ").strip()
+    if not course:
+        print("Course cannot be empty")
+        return
 
     student = {
         "id": student_id,
