@@ -3,20 +3,36 @@ FILE_NAME="students.json"
 students=[]
 def add_students():
     try:
-        student_id=int(input("Enter student ID: "))
+        student_id = int(input("Enter student ID: "))
     except ValueError:
-        print("Please enter a valid user ID")
+        print("Please enter a valid student ID")
         return
-    name=input("Enter student name: ")
+
+    for student in students:
+        if student["id"] == student_id:
+            print("Student ID already exists")
+            return
+
+    name = input("Enter student name: ")
+
     try:
-        age=int(input("Enter student age: "))
+        age = int(input("Enter student age: "))
     except ValueError:
         print("Please enter a valid age")
         return
-    course=input("Enter student course: ")
-    student={"id":student_id,"name":name,"age":age,"course":course}
+
+    course = input("Enter student course: ")
+
+    student = {
+        "id": student_id,
+        "name": name,
+        "age": age,
+        "course": course
+    }
+
     students.append(student)
     save_students()
+    print("Student added successfully")
 def view_students():
     if students==[]:
         print("No students found")
@@ -27,18 +43,25 @@ def view_students():
             print("age:",student["age"])
             print("course:",student["course"])
 def search_student():
-    student_id=int(input("Enter student ID to search: "))
-    found=False
+    try:
+        student_id = int(input("Enter student ID to search: "))
+    except ValueError:
+        print("Please enter a valid student ID")
+        return
+
+    found = False
+
     for student in students:
-        if student["id"]==student_id:
-            print("Student id:",student["id"])
-            print("name:",student["name"])
-            print("age:",student["age"])
-            print("course:",student["course"])
-            found=True
+        if student["id"] == student_id:
+            print("Student id:", student["id"])
+            print("name:", student["name"])
+            print("age:", student["age"])
+            print("course:", student["course"])
+            found = True
             break
-        if not found:
-            print("Student not found")
+
+    if not found:
+        print("Student not found")
 def update_student():
     try:
         student_id = int(input("Enter student ID to update: "))
@@ -62,8 +85,8 @@ def update_student():
             print("Student updated successfully")
             found=True
             break
-        if not found:
-            print("Student not found")
+    if not found:
+        print("Student not found")
 def delete_student():
     student_id = int(input("Enter student ID to delete: "))
     found=False
@@ -74,8 +97,8 @@ def delete_student():
             print("Student deleted successfully")
             found=True
             break
-        if not found:
-            print("Student not found")
+    if not found:
+        print("Student not found")
 def save_students():
     with open(FILE_NAME, "w") as file: 
         json.dump(students, file, indent=4)
@@ -113,5 +136,6 @@ while True:
         delete_student()
     elif choice==6:
         print("Thank you for using student management system!")
+        break
     else:
         print("Invalid choice. Please Try again")
