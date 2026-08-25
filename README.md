@@ -210,3 +210,96 @@ Salla Shreya
 ## Project Status
 
 Completed
+---
+
+## Docker
+
+This application is containerized using Docker.
+
+### Build the Docker Image
+
+```bash
+docker build -t student-management-system .
+```
+
+### Run the Docker Container
+
+```bash
+docker run -it student-management-system
+```
+
+The Docker container provides a consistent Python 3.12 environment for running the application.
+
+---
+
+## Continuous Integration
+
+This project uses GitHub Actions for Continuous Integration (CI).
+
+The GitHub Actions workflow automatically:
+
+- Checks out the source code
+- Sets up Python 3.12
+- Checks Python syntax
+- Builds the Docker image
+
+The workflow file is located at:
+
+```text
+.github/workflows/ci.yml
+```
+
+Every push to the `main` branch triggers the CI workflow automatically.
+
+---
+
+## Technologies Used
+
+- Python
+- JSON
+- Git
+- GitHub
+- Docker
+- GitHub Actions
+
+---
+
+## Project Structure
+
+```text
+Student-Management-System/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── .gitignore
+├── Dockerfile
+├── main.py
+├── README.md
+├── requirements.txt
+└── students.json
+```
+
+---
+
+## How to Run the Project
+
+### Run Locally
+
+```bash
+python main.py
+```
+
+### Run Using Docker
+
+```bash
+docker build -t student-management-system .
+docker run -it student-management-system
+```
+
+---
+
+## CI Status
+
+GitHub Actions successfully checks the Python syntax and builds the Docker image whenever changes are pushed to the `main` branch.
